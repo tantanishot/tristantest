@@ -9,10 +9,19 @@
 #include <iostream>
 using namespace std;
 
+//Questions: 
+//How are the declarations of the arrays set and set2 different than how they would be declared in Java?
+//In terms of syntax, the square brackets go after the name rather than the data type. Another thing to consider is the size is not considered in memory
+
+
 // Forward declarations.
 void display(int data[], int size);
 void bubble(int data[], int size);
-void swap(int data[], int idx1, int idx2);
+void swap( int* idx1, int* idx2);
+
+//Additional code
+int linearSearch(int data[], int size, int target);
+
 
 int main(int argc, const char * argv[])
 {
@@ -31,9 +40,27 @@ int main(int argc, const char * argv[])
   display(set, SIZE);
   bubble(set, SIZE);
   display(set, SIZE);
+ 
+
+  cout << "Searching for 2 in set[]: " << linearSearch(set, SIZE, 2) << endl;
+
     
   return 0;
 }
+
+
+//linearsearch method
+int linearSearch(int data[], int size, int target) {
+    for(int i = 0; i < size; i++) {
+      if(data[i] == target) 
+      {
+        return i;
+      }
+    }
+    return -1;
+}
+
+
 
 void display(int data[], int size) {
   for(int i = 0; i < size; i++) {
@@ -46,15 +73,15 @@ void bubble(int data[], int size) {
   for(int i = 0; i < size; i++) {
     for(int k = 0; k < size - 1 - i; k++) {
       if(data[k] < data[k+1]) {
-		  swap(data, k, k+1);
+		  swap(&data[k], &data[k + 1]);
       }
     }
   }
 }
 
-void swap(int data[], int idx1, int idx2) {
-  int temp = data[idx1];
-  data[idx1] = data[idx2];
-  data[idx2] = temp;
+void swap(int* idx1, int* idx2) {
+  int temp = *idx1;
+  *idx1 = *idx2;
+  *idx2 = temp;
 }
  
