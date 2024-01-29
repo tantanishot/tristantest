@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include <vector>
 
 void BubbleSort(int sortArray[], int arraySize) {
     for(int i = 0; i < arraySize; i++) {
@@ -28,6 +29,23 @@ void InsertionSort(int sortArray[], int arraySize) {
     }   
 }
 
+
+template<typename T>
+T BubbleSortHalf(vector<T> vector) {
+    for(int i = 0; i < vector.size(); i++) {
+        for(int j = 0; j < vector.size() - 1; j++) {
+            if(vector[j] > vector[j + 1]) 
+            {
+                T temp = vector[j];
+                vector[j] = vector[j + 1];
+                vector[j + 1] = temp;
+            }
+        }
+    }
+    return vector[vector.size()  / 2];
+}
+
+
 int main() {
 cout << "Bubble Sort: "  << endl;
 int bubbleArray[] = {2,7,4,1,5,3};
@@ -50,6 +68,19 @@ InsertionSort(insertionArray,6);
 for(int i  = 0; i < 6; i++) {
     cout << insertionArray[i] << " ";
 }
+cout << endl;
+
+vector<int> vec1 = {1,6,4,23,8,5,3,33};
+
+vector<char> vec2 = {'c', 'b', 'a', 'd', 'c', 'f'};
+
+cout << BubbleSortHalf(vec1) << endl;
+cout << BubbleSortHalf(vec2) << endl;
+
+
+
+
+
 
 
 
